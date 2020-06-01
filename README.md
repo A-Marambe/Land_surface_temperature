@@ -4,3 +4,5 @@ This project for monitoring satellite image based landsurface temperature rapped
 1. project has functionality to download Landsat 8 images based on a given location.
 
 2. project has functionality to calculate Land_surface_temperature based on thermal bands and vegetation index calculated using optical bands.
+
+
