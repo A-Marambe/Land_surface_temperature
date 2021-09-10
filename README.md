@@ -20,6 +20,4 @@ iii.Code is self explanetary with frequently added comments.
 iv. Please use a GUI gis software to produce presentable
     maps after saving LST products. 
 	
-v. For large data volumes, may use loops and meta data in table
-   format. 
- -----------------------------------------------------------------
+ v. For large data volumes, may use loops and meta data in table format
