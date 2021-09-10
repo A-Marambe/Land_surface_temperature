@@ -31,12 +31,11 @@ maxVI <- cellStats(NDVI, max)
 maxVI
 minVI <- cellStats(NDVI, min)
 minVI
-######################################
+
 # reading thermal band
 Thermal <- brick("Thermal_sub")
 print(Thermal)
 plot(Thermal)
-
 band10 <- raster(Thermal, layer=1)
 plot(band10)
 
@@ -45,18 +44,11 @@ L <- (0.0003342*band10)+0.1
 plot(L)
 
 #Brightness temperature
-
 BT <- 1321.0789/(log((774.8853/L)+1))
 plot(BT)
 
 #K2=1321.0789, k1=774.8853
-
-
-
-
-################################################
 #factional vegetation Pv
-
 fv <- ((NDVI-(minVI))/(maxVI-(minVI)))^2
 plot(fv)
 
@@ -80,5 +72,3 @@ print(LST_celci)
 
 #save the LST file for further processing in ENVI/ArcMAP/Qgis
 writeRaster(LST_celci, 'LSTR_an', format = "GTiff")
-
-
