@@ -10,7 +10,7 @@ library(ggplot2)
 setwd("D:/LST/Kandyimage")
 
 # reading landsat image
-landsat_mult=brick("reflectnce_sub")
+landsat_mult <- brick("reflectnce_sub")
 print(landsat_mult)
 plot(landsat_mult)
 
@@ -20,33 +20,33 @@ plot(landsat_mult)
 #NDVI
 
 # reading bands
-band4=raster(landsat_mult, layer=4)
-band5=raster(landsat_mult, layer=5)
+band4 <- raster(landsat_mult, layer=4)
+band5 <- raster(landsat_mult, layer=5)
 
 # calculate NDVI
-NDVI=(band5-band4)/(band5+band4)
+NDVI <- (band5-band4)/(band5+band4)
 plot(NDVI)
 print(NDVI)
-maxVI=cellStats(NDVI, max)
+maxVI <- cellStats(NDVI, max)
 maxVI
-minVI=cellStats(NDVI, min)
+minVI <- cellStats(NDVI, min)
 minVI
 ######################################
 # reading thermal band
-Thermal=brick("Thermal_sub")
+Thermal <- brick("Thermal_sub")
 print(Thermal)
 plot(Thermal)
 
-band10=raster(Thermal, layer=1)
+band10 <- raster(Thermal, layer=1)
 plot(band10)
 
 #TOA of thermal band,gain, offset,( RADIANCE_MULT_BAND_x, RADIANCE_ADD_BAND_x (from meta data) )
-L=(0.0003342*band10)+0.1
+L <- (0.0003342*band10)+0.1
 plot(L)
 
 #Brightness temperature
 
-BT= 1321.0789/(log((774.8853/L)+1))
+BT <- 1321.0789/(log((774.8853/L)+1))
 plot(BT)
 
 #K2=1321.0789, k1=774.8853
@@ -57,11 +57,11 @@ plot(BT)
 ################################################
 #factional vegetation Pv
 
-fv=((NDVI-(minVI))/(maxVI-(minVI)))^2
+fv <- ((NDVI-(minVI))/(maxVI-(minVI)))^2
 plot(fv)
 
 #Emissivity
-EM=0.004*fv+0.986
+EM <- 0.004*fv+0.986
 plot(EM)
 
 #BT=brick("BT_R10")
@@ -69,12 +69,12 @@ plot(EM)
 #plot(BT)
 
 #LST  in kelvin
-LST=(BT/(1+(0.00115*BT/1.4388)*log(EM)))
+LST <- (BT/(1+(0.00115*BT/1.4388)*log(EM)))
 print(LST)
 plot(LST)
 
 # LST in celcius
-LST_celci=LST-273.15
+LST_celci <- LST-273.15
 plot(LST_celci)
 print(LST_celci)
 
